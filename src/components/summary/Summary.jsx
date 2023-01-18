@@ -3,6 +3,10 @@ import "./summary.css";
 
 function Summary(props) {
 
+    function goBackHandler() {
+        props.goToSummaryPage(false);
+        props.hidePlanDiv(true);
+    };
 
     return (
         <div className='summary-div'>
@@ -22,7 +26,7 @@ function Summary(props) {
                 </div>
             </div>
             <div className='sec-div'>
-                <button className='btn'>Go Back</button>
+                <button className='btn' onClick={goBackHandler}>Go Back</button>
                 <button type="button" className="btn btn-dark">Pay now</button>
             </div>
         </div>

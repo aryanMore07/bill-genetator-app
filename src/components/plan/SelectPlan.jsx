@@ -9,29 +9,44 @@ import Switch from '@mui/material/Switch';
 
 function SelectPlan({getUserPlans, goToSummaryPage, hidePlanDiv, getInfoDiv}) {
 
+    let switchVal = document.querySelector('.toggle-switch');
+    
     const [arcadeActive, setArcadeActive] = useState(false);
     const [advancedActive, setAdvancedActive] = useState(false);
     const [proActive, setProActive] = useState(false);
-
+    const [toggle, setToggle] = useState('');
+    
     const [plan, setPlan] = useState('');
     const [amount, setAmount] = useState('');
-
+    
     function arcadeClickHandler(e) {
         setArcadeActive(true);
         setPlan("Arcade");
-        setAmount("$9");
+        if(toggle) {
+            setAmount("$49/yr");
+        } else {
+            setAmount("$9/Mo");
+        }
     }
 
     function advancedClickHandler() {
         setAdvancedActive(true);
         setPlan("Advanced");
-        setAmount('$12');
+        if(toggle) {
+            setAmount('$69/Yr');
+        } else {
+            setAmount('$12/Mo');
+        }
     }
 
     function proClickHandler() {
         setProActive(true);
         setPlan("Pro");
-        setAmount("$15");
+        if (toggle) {
+            setAmount("$90/Yr");
+        } else {
+            setAmount("$15/Mo");
+        }
     }
 
     function nextStepClickHandler() {
@@ -46,7 +61,8 @@ function SelectPlan({getUserPlans, goToSummaryPage, hidePlanDiv, getInfoDiv}) {
     function goBackHandler() {
         console.log("Hello from the plan");
         hidePlanDiv(false);
-        getInfoDiv(true);
+        getInfoDiv(false);
+        
     }
 
     return (
@@ -63,7 +79,7 @@ function SelectPlan({getUserPlans, goToSummaryPage, hidePlanDiv, getInfoDiv}) {
                         </div>
                         <div className='text-keeper'>
                             <h5 className="card-title">Arcade</h5>
-                            <p className="card-text">$9/Mo</p>
+                            <p className="card-text">{ toggle ? "$49/Yr" : "$9/Mo"}</p>
                         </div>
                     </div>
                 </div>
@@ -74,7 +90,7 @@ function SelectPlan({getUserPlans, goToSummaryPage, hidePlanDiv, getInfoDiv}) {
                         </div>
                         <div className="text-keeper">
                             <h5 className="card-title">Advanced</h5>
-                            <p className="card-text">$12/Mo</p>
+                            <p className="card-text">{ toggle ? "$69/Yr" : "$12/Mo"}</p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +101,7 @@ function SelectPlan({getUserPlans, goToSummaryPage, hidePlanDiv, getInfoDiv}) {
                         </div>
                         <div className="text-keeper">
                             <h5 className="card-title">Pro</h5>
-                            <p className="card-text">$15/Mo</p>
+                            <p className="card-text">{ toggle ? "$90/Yr" : "$15/Mo"}</p>
                         </div>
                     </div>
                 </div>
@@ -93,12 +109,14 @@ function SelectPlan({getUserPlans, goToSummaryPage, hidePlanDiv, getInfoDiv}) {
             <div className="toggle-div">
                 <Stack direction="row" spacing={1} alignItems="center">
                     <Typography>Monthly</Typography>
-                    <Switch inputProps={{ 'aria-label': 'ant design' }} />
+                    <Switch  inputProps={{ 'aria-label': 'ant design' }} onChange={e => {
+                        setToggle(e.target.checked);
+                    }} />
                     <Typography>Yearly</Typography>
                 </Stack>
             </div>
             <div className='sec-div'>
-                <button className='btn'>Go Back</button>
+                <button className='btn' onClick={goBackHandler}>Go Back</button>
                 <button type="button" className="btn btn-dark" onClick={nextStepClickHandler}>Next step</button>
             </div>
         </div>

@@ -10,7 +10,7 @@ function Home() {
     const [getUserPlan, setGetUserPlan] = useState({});
     const [getInfoDiv, setGetInfoDiv] = useState(false);
     const [selectPlanDiv, setSelectPlanDiv] = useState(false);
-    const [summaryDiv, setSummaryDiv] = useState(false);
+    const [summaryDiv, setSummaryDiv] = useState(false);    
     
 
     console.log(`plan: ${getUserPlan.clientPlan} and amount: ${getUserPlan.clientAmount}`)
@@ -57,9 +57,10 @@ function Home() {
                     <p className='desc-div-three'>SUMMARY</p>
                 </div>
             </aside>
-            {!getInfoDiv ? <GetInfo getUserDetail={setGetUserDetails} goToNextpage={setSelectPlanDiv} hideInfoDiv={setGetInfoDiv} getInfoDiv={setGetInfoDiv} /> : "" }
-            {selectPlanDiv ? <SelectPlan  getUserPlans={setGetUserPlan} goToSummaryPage={setSummaryDiv} hidePlanDiv={setSelectPlanDiv} />: ''}
-            {summaryDiv ? <Summery clientName={userDetails.name} clientEmail={userDetails.eMail} clientPhone={userDetails.phone} clientAmt={userPlan.amount} clientPlan={userPlan.plan} /> : ''}
+            {!getInfoDiv ? <GetInfo getUserDetail={setGetUserDetails} goToNextpage={setSelectPlanDiv} hideInfoDiv={setGetInfoDiv}  /> : "" }
+            {selectPlanDiv ? <SelectPlan  getUserPlans={setGetUserPlan} goToSummaryPage={setSummaryDiv} hidePlanDiv={setSelectPlanDiv} getInfoDiv={setGetInfoDiv} />: ''}
+            {summaryDiv ? <Summery clientName={userDetails.name} clientEmail={userDetails.eMail} clientPhone={userDetails.phone} clientAmt={userPlan.amount} clientPlan={userPlan.plan} goToSummaryPage={setSummaryDiv} hidePlanDiv={setSelectPlanDiv} /> : ''}
+            {/* <SelectPlan />  */}
         </div>
     )
 }
