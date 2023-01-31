@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Deployed Link
 
-The project deployed link [Bill-generator](https://bill-g-e-n.netlify.app/).
+The project deployed link ~ [Bill-generator](https://bill-g-e-n.netlify.app/).
 
 ## Available Scripts
 
